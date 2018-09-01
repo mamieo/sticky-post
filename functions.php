@@ -140,3 +140,10 @@ function pagination( $pages = '', $range = 3 ) {
 	}
 }
 
+add_action( 'pre_get_posts', 'adventurous_child_ignore_sticky' );
+function adventurous_child_ignore_sticky( $query ) {
+    if ($query->is_main_query() && $query->is_home()) 
+    {
+        $query->set( 'ignore_sticky_posts', 1 );
+    }
+}
